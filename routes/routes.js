@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllStorage } = require('../services/storage');
+const { getAllStorage, getStorageById } = require('../services/storage');
 const router = express.Router();
 
 router.get('/storage', (req, res) => {
@@ -13,8 +13,21 @@ router.get('/storage', (req, res) => {
 });
 
 router.get('/storage/:id', (req, res) => {
-  console.log('Rota GET com ID');
-  res.send('Rota GET com ID');
+  try {
+    const id = parseInt(req.params.id);
+
+    if (!isNaN(id)) {
+      const storage = getStorageById(id);
+      res.send(storage);
+    } else {
+      res.status(422);
+      res.send("Id inválido");
+    }
+  }
+  catch (error) {
+    res.status(500);
+    res.send(error.message)
+  }
 });
 
 router.post('/storage', (req, res) => {
