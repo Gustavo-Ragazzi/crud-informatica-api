@@ -11,7 +11,16 @@ function getStorageById(id) {
     return filterStorage;
 }
 
+function addStorage(newStorage) {
+    const storage = JSON.parse(fs.readFileSync("storage.json"));
+    
+    const newStorageList = [...storage, newStorage];
+
+    fs.writeFileSync("storage.json", JSON.stringify(newStorageList));
+}
+
 module.exports = {
     getAllStorage,
-    getStorageById
+    getStorageById,
+    addStorage
 }

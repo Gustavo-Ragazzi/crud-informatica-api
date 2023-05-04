@@ -1,5 +1,6 @@
 const express = require('express');
-const { getAllStorage, getStorageById } = require('../services/storage');
+const fs = require("fs");
+const { getAllStorage, getStorageById, addStorage } = require('../services/storage');
 const router = express.Router();
 
 router.get('/storage', (req, res) => {
@@ -31,7 +32,29 @@ router.get('/storage/:id', (req, res) => {
 });
 
 router.post('/storage', (req, res) => {
-  // Sua lógica para criar um novo item
+  try {
+    const newStorage = req.body;
+
+    if (req.body.id && req.body.nome && req.body.marca && req.body.preco && req.body.categoria && req.body.qnt) {
+      const storage = JSON.parse(fs.readFileSync("storage.json"));
+      if (!storage.some(item => item.id === req.body.id)) {
+        addStorage(newStorage);
+        res.status(201);
+        res.send("Novo item inserido com sucesso");
+      } else {
+        res.status(422);
+        res.send("Esse ID já existe!")
+      }
+
+    } else {
+      res.status(422);
+      res.send("Todos os campos são obrigatórios!")
+    }
+
+  } catch (error) {
+    res.status(500);
+    res.send(error.message)
+  }
 });
 
 router.put('/storage/:id', (req, res) => {

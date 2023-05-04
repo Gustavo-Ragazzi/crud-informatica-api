@@ -78,5 +78,13 @@
         "preco": 2199.99,
         "categoria": "Processadores",
         "qnt": 4
+    },
+    {
+        "id": 10,
+        "nome": "Nvidia 3090ti",
+        "marca": "Nvidia",
+        "preco": "5600.00",
+        "categoria": "GPU",
+        "qnt": 8
     }
 ]
