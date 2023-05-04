@@ -19,8 +19,21 @@ function addStorage(newStorage) {
     fs.writeFileSync("storage.json", JSON.stringify(newStorageList));
 }
 
+function changeStorage(changes, id) {
+    let currentStorage = JSON.parse(fs.readFileSync("storage.json"));
+    const idChanged = currentStorage.findIndex(item => item.id === id);
+
+    const contentChanged = { ...currentStorage[idChanged], ...changes };
+
+    currentStorage[idChanged] = contentChanged;
+
+    fs.writeFileSync("storage.json", JSON.stringify(currentStorage))
+
+}
+
 module.exports = {
     getAllStorage,
     getStorageById,
-    addStorage
+    addStorage,
+    changeStorage
 }

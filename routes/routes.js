@@ -1,6 +1,6 @@
 const express = require('express');
 const fs = require("fs");
-const { getAllStorage, getStorageById, addStorage } = require('../services/storage');
+const { getAllStorage, getStorageById, addStorage, changeStorage } = require('../services/storage');
 const router = express.Router();
 
 router.get('/storage', (req, res) => {
@@ -57,8 +57,23 @@ router.post('/storage', (req, res) => {
   }
 });
 
-router.put('/storage/:id', (req, res) => {
-  // Sua lógica para atualizar um item existente
+router.patch('/storage/:id', (req, res) => {
+  try {
+    const id = req.params.id;
+
+    if(id && Number(id)) {
+      const body = req.body;
+
+      changeStorage(body, id);
+      res.send("Item modificado com sucesso");
+    } else {
+      res.status(422);
+      res.send("Id inválido");
+    }
+  } catch(error) {
+    res.status(500);
+    res.send(error.message);
+  }
 });
 
 router.delete('/storage/:id', (req, res) => {
