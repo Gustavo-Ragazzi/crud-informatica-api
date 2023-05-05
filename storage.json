@@ -81,10 +81,18 @@
     },
     {
         "id": 10,
-        "nome": "Nvidia 3090ti",
+        "nome": "Gabinete",
         "marca": "Nvidia",
         "preco": "5600.00",
         "categoria": "GPU",
         "qnt": 8
+    },
+    {
+        "id": 11,
+        "nome": "980ti",
+        "marca": "Nvidia",
+        "preco": "3000.00",
+        "categoria": "GPU",
+        "qnt": 1
     }
 ]

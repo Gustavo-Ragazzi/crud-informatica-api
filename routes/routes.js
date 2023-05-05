@@ -1,6 +1,6 @@
 const express = require('express');
 const fs = require("fs");
-const { getAllStorage, getStorageById, addStorage, changeStorage, findStorageIndexById, deleteStorage } = require('../services/storage');
+const { getAllStorage, getStorageById, addStorage, deleteStorage, changeStorage } = require('../services/storage');
 const router = express.Router();
 
 router.get('/storage', (req, res) => {
@@ -60,26 +60,19 @@ router.post('/storage', (req, res) => {
 router.patch('/storage/:id', (req, res) => {
   try {
     const id = req.params.id;
-    const body = req.body;
 
-    const storage = JSON.parse(fs.readFileSync("storage.json"));
-    const index = findStorageIndexById(storage, id);
-
-    if (index !== -1) {
-      const updatedStorage = {
-        ...storage[index],
-        ...body
-      };
-
-      storage[index] = updatedStorage;
-      fs.writeFileSync("storage.json", JSON.stringify(storage));
-      res.send("Item modificado com sucesso");
+    if(id && Number(id)) {
+      const body = req.body;
+      changeStorage(body, id);
+      res.send("Item modificado com sucesso")
     } else {
-      res.status(404).send("Item não encontrado");
+      res.status(422);
+      res.send("Id inválido")
     }
-
+    
   } catch(error) {
-    res.status(500).send(error.message);
+    res.status(500);
+    res.send(error.mensage);
   }
 });
 
