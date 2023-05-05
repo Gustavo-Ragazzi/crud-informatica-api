@@ -19,21 +19,34 @@ function addStorage(newStorage) {
     fs.writeFileSync("storage.json", JSON.stringify(newStorageList));
 }
 
-function changeStorage(changes, id) {
-    let currentStorage = JSON.parse(fs.readFileSync("storage.json"));
-    const idChanged = currentStorage.findIndex(item => item.id === id);
+function changeStorage(data, id) {
+    const storage = JSON.parse(fs.readFileSync('storage.json', 'utf8'));
+    const index = storage.findIndex(item => item.id === Number(id));
+    if(index !== -1) {
+      storage[index] = { ...data, id: Number(id) };
+      fs.writeFileSync('storage.json', JSON.stringify(storage, null, 2), 'utf8');
+    } else {
+      throw new Error('Item não encontrado');
+    }
+  }
 
-    const contentChanged = { ...currentStorage[idChanged], ...changes };
+function findStorageIndexById(storage, id) {
+    return storage.findIndex(item => item.id === id);
+}
 
-    currentStorage[idChanged] = contentChanged;
+function deleteStorage(id) {
+    const currentStorage = JSON.parse(fs.readFileSync("storage.json"));
 
-    fs.writeFileSync("storage.json", JSON.stringify(currentStorage))
+    filteredStorage = currentStorage.filter(item => item.id != id);
 
+    fs.writeFileSync("storage.json", JSON.stringify(filteredStorage))
 }
 
 module.exports = {
     getAllStorage,
     getStorageById,
     addStorage,
-    changeStorage
+    changeStorage,
+    findStorageIndexById,
+    deleteStorage
 }

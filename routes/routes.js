@@ -1,6 +1,6 @@
 const express = require('express');
 const fs = require("fs");
-const { getAllStorage, getStorageById, addStorage, changeStorage } = require('../services/storage');
+const { getAllStorage, getStorageById, addStorage, changeStorage, findStorageIndexById, deleteStorage } = require('../services/storage');
 const router = express.Router();
 
 router.get('/storage', (req, res) => {
@@ -60,24 +60,46 @@ router.post('/storage', (req, res) => {
 router.patch('/storage/:id', (req, res) => {
   try {
     const id = req.params.id;
+    const body = req.body;
 
-    if(id && Number(id)) {
-      const body = req.body;
+    const storage = JSON.parse(fs.readFileSync("storage.json"));
+    const index = findStorageIndexById(storage, id);
 
-      changeStorage(body, id);
+    if (index !== -1) {
+      const updatedStorage = {
+        ...storage[index],
+        ...body
+      };
+
+      storage[index] = updatedStorage;
+      fs.writeFileSync("storage.json", JSON.stringify(storage));
       res.send("Item modificado com sucesso");
     } else {
-      res.status(422);
-      res.send("Id inválido");
+      res.status(404).send("Item não encontrado");
     }
+
   } catch(error) {
-    res.status(500);
-    res.send(error.message);
+    res.status(500).send(error.message);
   }
 });
 
 router.delete('/storage/:id', (req, res) => {
-  // Sua lógica para excluir um item existente
-});
+  try {
+    const id = req.params.id;
+
+    if (id && Number(id)) {
+      const body = req.body;
+      deleteStorage(id);
+      res.send("Livro deletado com sucesso");
+    } else {
+      res.status(422);
+      res.send("Id inválido")
+    } 
+  } catch {
+      res.status(500);
+      res.send(error.message);
+    }
+  }
+);
 
 module.exports = router;
