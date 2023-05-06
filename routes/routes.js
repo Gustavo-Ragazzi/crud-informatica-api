@@ -83,7 +83,7 @@ router.delete('/storage/:id', (req, res) => {
     if (id && Number(id)) {
       const body = req.body;
       deleteStorage(id);
-      res.send("Livro deletado com sucesso");
+      res.send("Item deletado com sucesso");
     } else {
       res.status(422);
       res.send("Id inválido")
