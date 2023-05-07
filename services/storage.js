@@ -15,7 +15,7 @@ function addStorage(newStorage) {
     const storage = JSON.parse(fs.readFileSync("storage.json"));
     
     const newStorageList = [...storage, newStorage];
-    const newStorageListSorted = newStorageList.sort((a, b) => a.id - b.id);
+    const newStorageListSorted = orderById(newStorageList)
 
     fs.writeFileSync("storage.json", JSON.stringify(newStorageListSorted));
 }
@@ -30,16 +30,22 @@ function changeStorage(changes, id) {
     } 
 
     currentStorage[changedIndex] = { ...currentStorage[changedIndex], ...changes };
+    const currentStorageSorted = orderById(currentStorage);
 
-    fs.writeFileSync("storage.json", JSON.stringify(currentStorage));
+    fs.writeFileSync("storage.json", JSON.stringify(currentStorageSorted));
 }
 
 function deleteStorage(id) {
     const currentStorage = JSON.parse(fs.readFileSync("storage.json"));
 
     filteredStorage = currentStorage.filter(item => item.id != id);
+    const sortFilteredStorage = orderById(filteredStorage);
 
-    fs.writeFileSync("storage.json", JSON.stringify(filteredStorage))
+    fs.writeFileSync("storage.json", JSON.stringify(sortFilteredStorage))
+}
+
+function orderById(list) {
+    return list.sort((a, b) => a.id - b.id);
 }
 
 module.exports = {

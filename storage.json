@@ -8,22 +8,6 @@
         "qnt": 5
     },
     {
-        "id": 1,
-        "nome": "Processador AMD Ryzen 9 5900X",
-        "marca": "AMD",
-        "preco": 4199.99,
-        "categoria": "Processadores",
-        "qnt": 3
-    },
-    {
-        "id": 2,
-        "nome": "Memória RAM HyperX Fury RGB 16GB DDR4 3600MHz",
-        "marca": "HyperX",
-        "preco": 899.99,
-        "categoria": "Memórias RAM",
-        "qnt": 8
-    },
-    {
         "id": 3,
         "nome": "Memória RAM Corsair Vengeance RGB PRO 32GB DDR4 3200MHz",
         "marca": "Corsair",
@@ -65,18 +49,58 @@
     },
     {
         "id": 8,
-        "nome": "i9 11900k",
+        "nome": "Processador Intel Core i5-11600K",
         "marca": "Intel",
-        "preco": 3599.99,
-        "categoria": "Processador",
-        "qnt": 120
+        "preco": 1699.99,
+        "categoria": "Processadores",
+        "qnt": 5
     },
     {
         "id": 9,
-        "nome": "Processador AMD Ryzen 7 5800X",
-        "marca": "AMD",
-        "preco": 2199.99,
+        "nome": "Memória RAM HyperX Fury RGB 16GB DDR4 3600MHz",
+        "marca": "HyperX",
+        "preco": 899.99,
+        "categoria": "Memórias RAM",
+        "qnt": 8
+    },
+    {
+        "id": 10,
+        "nome": "Memória RAM Corsair Vengeance RGB PRO 32GB DDR4 3200MHz",
+        "marca": "Corsair",
+        "preco": 1599.99,
+        "categoria": "Memórias RAM",
+        "qnt": 2
+    },
+    {
+        "id": 11,
+        "nome": "Processador Intel Core i7-11700K",
+        "marca": "Intel",
+        "preco": 2399.99,
         "categoria": "Processadores",
         "qnt": 4
+    },
+    {
+        "id": 12,
+        "nome": "Processador AMD Ryzen 5 5600X",
+        "marca": "AMD",
+        "preco": 1399.99,
+        "categoria": "Processadores",
+        "qnt": 6
+    },
+    {
+        "id": 13,
+        "nome": "Memória RAM Kingston ValueRAM 8GB DDR4 2400MHz",
+        "marca": "Kingston",
+        "preco": 299.99,
+        "categoria": "Memórias RAM",
+        "qnt": 12
+    },
+    {
+        "id": 14,
+        "nome": "Memória RAM Corsair Dominator Platinum RGB 64GB DDR4 3200MHz",
+        "marca": "Corsair",
+        "preco": 3899.99,
+        "categoria": "Memórias RAM",
+        "qnt": 1
     }
 ]
