@@ -65,11 +65,11 @@
     },
     {
         "id": 8,
-        "nome": "Processador Intel Core i9-11900K",
+        "nome": "i9 11900k",
         "marca": "Intel",
         "preco": 3599.99,
-        "categoria": "Processadores",
-        "qnt": 2
+        "categoria": "Processador",
+        "qnt": 120
     },
     {
         "id": 9,
@@ -78,21 +78,5 @@
         "preco": 2199.99,
         "categoria": "Processadores",
         "qnt": 4
-    },
-    {
-        "id": 10,
-        "nome": "Gabinete",
-        "marca": "Nvidia",
-        "preco": "5600.00",
-        "categoria": "GPU",
-        "qnt": 8
-    },
-    {
-        "id": 11,
-        "nome": "980ti",
-        "marca": "Nvidia",
-        "preco": "3000.00",
-        "categoria": "GPU",
-        "qnt": 1
     }
 ]

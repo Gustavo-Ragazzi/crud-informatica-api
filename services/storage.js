@@ -15,8 +15,9 @@ function addStorage(newStorage) {
     const storage = JSON.parse(fs.readFileSync("storage.json"));
     
     const newStorageList = [...storage, newStorage];
+    const newStorageListSorted = newStorageList.sort((a, b) => a.id - b.id);
 
-    fs.writeFileSync("storage.json", JSON.stringify(newStorageList));
+    fs.writeFileSync("storage.json", JSON.stringify(newStorageListSorted));
 }
 
 function changeStorage(changes, id) {
